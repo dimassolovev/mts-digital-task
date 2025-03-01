@@ -16,10 +16,10 @@ public class Movie {
 
     private Long budget;
 
-    @Column(name = "original_title") // , nullable = false
+    @Column(name = "original_title", nullable = false)
     private String originalTitle;
 
-    @Column(name = "title") // , nullable = false
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Column(name = "release_date")
@@ -28,7 +28,7 @@ public class Movie {
     @Column(name = "vote_average")
     private Double voteAverage;
 
-    @Column(name = "movie_db_id", unique = true) // , nullable = false
+    @Column(name = "movie_db_id", unique = true, nullable = false)
     private Long movieDbId;
 
     @Column(name = "vote_count")

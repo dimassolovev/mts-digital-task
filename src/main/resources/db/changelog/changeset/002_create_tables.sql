@@ -4,9 +4,9 @@ CREATE TABLE IF NOT EXISTS movie
 (
     id             BIGSERIAL PRIMARY KEY,
     budget         BIGINT,
-    original_title VARCHAR(255),  -- NOT NULL
-    title          VARCHAR(255),  -- NOT NULL
-    movie_db_id    BIGINT UNIQUE, -- NOT NULL
+    original_title VARCHAR(255)  NOT NULL,
+    title          VARCHAR(255)  NOT NULL,
+    movie_db_id    BIGINT UNIQUE NOT NULL,
     release_date   DATE,
     vote_average   FLOAT,
     vote_count     BIGINT
