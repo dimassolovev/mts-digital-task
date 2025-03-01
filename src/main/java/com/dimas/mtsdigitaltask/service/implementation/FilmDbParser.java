@@ -40,9 +40,7 @@ public class FilmDbParser implements BackgroundTaskService {
             entity.setBudget(entity.getBudget() == 0 ? null : entity.getBudget());
 
             this.movies.add(entity);
-        }
-
-        catch (FeignException exception) {
+        } catch (FeignException exception) {
             log.error("Error while parsing movie, id: {}", this.lastEntryId);
         }
 
