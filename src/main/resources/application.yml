@@ -1,0 +1,48 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: mts-digital-task
+  main:
+    allow-bean-definition-overriding: true
+
+  cloud:
+    openfeign:
+      client:
+        config:
+          movieDbClient:
+            url: https://api.themoviedb.org/
+
+  datasource:
+    url: ${POSTGRES_URL}
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yml
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    enabled: true
+    default-schema: films_schema
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        enable_lazy_load_no_trans: true
+        default-schema: films_schema
+        jdbc:
+          batch_size: 50
+        order_updates: true
+
+
+external:
+  themoviedb:
+    api-key: ${API_KEY}

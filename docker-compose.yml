@@ -1,0 +1,33 @@
+version: "3.7"
+
+volumes:
+  postgres-films-db:
+
+services:
+
+  postgres-films-db:
+    container_name: postgres-films-db
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres-films-db:/var/lib/postgresql/moex-data/data
+
+  mts-digital-task-service:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: target/mts-digital-task-0.0.1-SNAPSHOT.jar
+    environment:
+      API_KEY: ${API_KEY}
+      POSTGRES_URL: ${POSTGRES_URL}
+      POSTGRES_USERNAME: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "8082:8082"
